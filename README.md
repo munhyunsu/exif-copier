@@ -12,6 +12,12 @@
 
   - [ExifTool by Phil Harvey](https://exiftool.org/)
 
+  - Requirements
+
+```bash
+python3 -m pip install --upgrade -r requirements.txt
+```
+
 ## 사용법
 
 
