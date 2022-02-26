@@ -10,6 +10,8 @@
 
 - 설치 방법
 
+  - [ExifTool by Phil Harvey](https://exiftool.org/)
+
 ## 사용법
 
 
