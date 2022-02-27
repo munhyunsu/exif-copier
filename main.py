@@ -14,6 +14,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_arguments('--debug', action='store_true',
                          help='The present debug message')
+    parser.add_arguments('--exiftool', default='./exiftool/',
+                         help='The directory with exiftool')
 
     FLAGS, _ = parser.parse_known_args()
     DEBUG = FLAGS.debug
