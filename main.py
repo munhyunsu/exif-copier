@@ -2,6 +2,7 @@ import os
 import csv
 import subprocess
 import shlex
+import shutil
 
 FLAGS = _ = None
 DEBUG = False
@@ -32,16 +33,14 @@ def main():
         print(f'Unparsed arguments {_}')
     tool = check_binary(FLAGS.exiftool)
 
-    original = []
+    os.makedirs(FLAGS.output, exist_ok=True)
     for imagepath, exif in get_exif(FLAGS.input):
-        original.append(imagepath)
         commands = shlex.split(f'{tool} {imagepath} {exif}')
         if DEBUG:
             print(f'RUN: {commands}')
         subprocess.run(commands)
-
-    os.path.makedirs(FLAGS.output, exist_ok=True)
-
+        shutil.move(imagepath, FLAGS.output)
+        shutil.move(f'{imagepath}_original', imagepath)
 
 
 if __name__ == '__main__':
