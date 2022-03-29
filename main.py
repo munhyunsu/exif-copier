@@ -1,17 +1,47 @@
 import os
+import csv
+import subprocess
+import shlex
 
 FLAGS = _ = None
 DEBUG = False
 
 
-def check_binary():
-    pass
+def check_binary(tool_root):
+    tool = os.path.join(tool_root, 'exiftool')
+    subprocess.run(tool, check=True)
+    return tool
+
+
+def get_exif(csv_path):
+    with open(csv_path, 'r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            imagepath = row['ImagePath']
+            tags = set(row.keys())
+            tags.remove('ImagePath')
+            exif = ''
+            for tag in tags:
+                exif = f'{exif} -{tag}={row[tag]}'
+            yield (imagepath, exif)
 
 
 def main():
     if DEBUG:
         print(f'Parsed arguments {FLAGS}')
         print(f'Unparsed arguments {_}')
+    tool = check_binary(FLAGS.exiftool)
+
+    original = []
+    for imagepath, exif in get_exif(FLAGS.input):
+        original.append(imagepath)
+        commands = shlex.split(f'{tool} {imagepath} {exif}')
+        if DEBUG:
+            print(f'RUN: {commands}')
+        subprocess.run(commands)
+
+    os.path.makedirs(FLAGS.output, exist_ok=True)
+
 
 
 if __name__ == '__main__':
