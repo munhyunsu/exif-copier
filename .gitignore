@@ -3,6 +3,11 @@ exiftool/
 input.csv
 output.csv
 
+# Handling files
+*.png
+*.jpg
+*.jpeg
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
