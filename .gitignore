@@ -5,8 +5,11 @@ output.csv
 
 # Handling files
 *.png
+*.PNG
 *.jpg
+*.JPG
 *.jpeg
+*.JPEG
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
