@@ -1,4 +1,5 @@
 import os
+import sys
 import csv
 import subprocess
 import shlex
@@ -9,9 +10,15 @@ DEBUG = False
 
 
 def check_binary(tool_root):
-    tool = os.path.join(tool_root, 'exiftool')
-    subprocess.run(tool, check=True)
-    return tool
+    if sys.platform == 'linux':
+        tool = os.path.join(tool_root, 'exiftool')
+    elif sys.platform == 'win32':
+        tool = os.path.join(tool_root, 'exiftool.exe')
+    if os.path.exists(tool):
+        return tool
+    else:
+        print(f'Can not find {tool}')
+        sys.exit(0)
 
 
 def get_exif(csv_path):
@@ -35,7 +42,10 @@ def main():
 
     os.makedirs(FLAGS.output, exist_ok=True)
     for imagepath, exif in get_exif(FLAGS.input):
-        commands = shlex.split(f'{tool} {imagepath} {exif}')
+        if sys.platform == 'linux':
+            commands = shlex.split(f'{tool} {imagepath} {exif}')
+        elif sys.platform == 'win32':
+            commands = f'{tool} {imagepath} {exif}'
         if DEBUG:
             print(f'RUN: {commands}')
         subprocess.run(commands)
