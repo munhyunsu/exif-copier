@@ -18,8 +18,13 @@
 
     - (Windows) Windows Executable: exiftool-xx.xx.zip 을 다운로드!
 
-## 사용법
+- 실행 준비
 
+  1. exiftool 디렉터리 생성
+
+  2. `exiftool` or (`exiftool.exe`) exiftool 디렉터리 안에 옮겨두기
+
+    - (Windows) 다운로드 받으면 `exiftool(-k).exe` 일텐데, 파일 이름을 `exiftool.exe` 로 변경해야 함!
 
 ## Created by
 
