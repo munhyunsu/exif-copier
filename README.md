@@ -26,6 +26,25 @@
 
     - (Windows) 다운로드 받으면 `exiftool(-k).exe` 일텐데, 파일 이름을 `exiftool.exe` 로 변경해야 함!
 
+## 입출력
+
+- 입력: `input.csv`
+
+  - Fieldnames: `ImagePath,GPSAltitude,GPSLatitude,GPSLongitude,FlightRollDegree,FlightYawDegree,FlightPitchD
+egree`
+
+  - Rows 개수 원하는 만큼 적어도 됨
+
+  - `ImagePath`는 프로그램 위치를 기준으로 상대 경로 가능
+
+- 실행
+
+  - (Windows) 쉬프트 + 오른쪽 클릭 => 여기에 PowerShell 창 열기
+
+  - `python3 main.py` or (Windows: `python main.py`)
+
+- 출력: output 디렉터리
+
 ## Created by
 
 - Hyunsu Mun (munhyunsu@cs-cnu.org)
