@@ -11,6 +11,9 @@ output.csv
 *.jpeg
 *.JPEG
 
+# Manual
+Manual.*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
