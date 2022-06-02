@@ -42,6 +42,8 @@ def main():
 
     os.makedirs(FLAGS.output, exist_ok=True)
     for imagepath, exif in get_exif(FLAGS.input):
+        if not os.path.exists(imagepath):
+            continue
         if sys.platform == 'linux':
             commands = shlex.split(f'{tool} {imagepath} {exif}')
         elif sys.platform == 'win32':
