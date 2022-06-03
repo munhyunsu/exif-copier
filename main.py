@@ -4,10 +4,11 @@ import csv
 import subprocess
 import shlex
 import shutil
+import time
 
 FLAGS = _ = None
 DEBUG = False
-
+STIME = time.time()
 
 def check_binary(tool_root):
     if sys.platform == 'linux':
@@ -43,7 +44,8 @@ def main():
     os.makedirs(FLAGS.output, exist_ok=True)
     for imagepath, exif in get_exif(FLAGS.input):
         if not os.path.exists(imagepath):
-            print(f'Can not find file {imagepath}')
+            if DEBUG:
+                print(f'Can not find file {imagepath}')
             continue
         if sys.platform == 'linux':
             commands = shlex.split(f'{tool} {imagepath} {exif}')
